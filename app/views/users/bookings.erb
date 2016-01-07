@@ -1,0 +1,21 @@
+
+
+
+<h3>
+Property details are as follows:<br><br>
+<%= @property.propertyname %><br>
+<%= @property.description %><br>
+<%= @property.location %><br>
+<%= @property.email %><br>
+</h3>
+
+<h4>Would you like to book your accommodation? Fill up the details below</h4>
+
+<form method="post" action="/properties/<%= @property.id %>/users/<%= @user.id %>/bookings">
+	<label>Full Name</label><input type="text" name="booking[bookname]"><br>
+	<label>Email</label><input type="text" name="booking[bookemail]"><br>
+	<label>Start Date</label><input type="text" placeholder="dd/mm/yyyy" name="booking[startdate]"><br>
+	<label>End Date</label><input type="text" 
+	placeholder="dd/mm/yyyy" name="booking[enddate]"><br>
+	<input type="submit" value="Book!">
+</form>

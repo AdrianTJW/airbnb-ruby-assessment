@@ -1,0 +1,29 @@
+<form method="get" action="/mainpage">
+	<button>Back to mainpage</button>
+</form>
+
+<h2>My Existing Bookings</h2>
+
+<% @bookings.each do |a| %>
+	<ul>
+		<li>
+			<h4>
+			Stay name: <a href="/properties/<%= a.property.id %>"><%= a.property.propertyname %></a><br>
+			Location: <%= a.property.location %><br>
+			Start date: <%= a.startdate %><br>
+			End date: <%= a.enddate %><br>
+
+			<form method="post" action="/bookings/<%= a.id %>/destroy">
+		    <input name="_method" type="hidden" value="delete"/>
+		    <button>Delete</button>
+		  </form>
+
+		  <form method="get" action="/bookings/<%= a.id %>/edit">
+		    <button>Edit</button>
+		  </form>
+
+			</h4>
+		</li>
+	</ul>
+<% end %>
+

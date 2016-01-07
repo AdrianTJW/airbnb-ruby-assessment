@@ -1,0 +1,18 @@
+<h3>
+Booking details are as follows:<br><br>
+<%= @booking.property.propertyname %><br>
+<%= @booking.property.location %><br>
+<%= @booking.startdate %><br>
+<%= @booking.enddate %><br>
+</h3>
+
+<h4>Edit your booking below:</h4>
+<form method="post" action="/bookings/<%= @booking.id %>">
+	<input name="_method" type="hidden" value="patch">
+	Start date: <textarea name="booking[startdate]"><%= @booking.startdate %></textarea><input type="submit" value="Update"><br>
+	End date: <textarea name="booking[enddate]"><%= @booking.enddate %></textarea><input type="submit" value="Update"><br>
+</form>
+
+<form method="get" action="/user/<%= @booking.user.id %>/bookings">
+  <button>Back</button>
+</form>

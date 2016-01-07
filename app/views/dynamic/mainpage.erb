@@ -1,0 +1,18 @@
+<h1>Welcome! <%= @user.fullname %>!</h1>
+
+<form method="post" action="/users/destroy">
+	<input name="_method" type="hidden" value="delete"/>
+	<button>Log out!</button>
+</form>
+
+<form method="get" action="/properties/new">
+	<button>Post Property!</button>
+</form>
+
+<form method="get" action="/properties">
+	<button>Show Properties!</button>
+</form>
+
+<form method="get" action="/user/<%= @user.id %>/bookings">
+	<button>My bookings!</button>
+</form>
