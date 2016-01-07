@@ -3,6 +3,19 @@
 		<title>Airbnb</title>
 	</head>
 	<body>
+		
 		<%= yield %>
+
+		<% if @flash.class == Array %>
+			<% @flash.each do |x| %>
+				<%= x %><br>
+			<% end %>
+		<% else %>
+			<%= @flash %>
+		<% end %>
+
 	</body>
+	<footer>
+		
+	</footer>
 </html>

@@ -1,6 +1,4 @@
 
-
-
 <h3>
 Property details are as follows:<br><br>
 <%= @property.propertyname %><br>
@@ -11,7 +9,7 @@ Property details are as follows:<br><br>
 
 <h4>Would you like to book your accommodation? Fill up the details below</h4>
 
-<form method="post" action="/properties/<%= @property.id %>/users/<%= @user.id %>/bookings">
+<form method="post" action="/properties/<%= @property.id %>/bookings">
 	<label>Full Name</label><input type="text" name="booking[bookname]"><br>
 	<label>Email</label><input type="text" name="booking[bookemail]"><br>
 	<label>Start Date</label><input type="text" placeholder="dd/mm/yyyy" name="booking[startdate]"><br>

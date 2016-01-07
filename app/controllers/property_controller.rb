@@ -29,7 +29,8 @@ post '/properties' do
 	if @property.save
 		redirect to "/properties/#{@property.id}"
 	else
-		redirect to "/error"
+		@flash = "#{@property.errors.full_messages}"
+		erb :'properties/new'
 	end
 end
 

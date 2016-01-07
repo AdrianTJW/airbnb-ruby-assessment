@@ -2,7 +2,7 @@ get '/users/new' do
 	erb :'users/new'
 end
 
-get '/mainpage' do
+get '/mainpage' do #/users/index
 	@user = User.find(session[:user_id])
 	erb :'dynamic/mainpage'
 end
@@ -13,7 +13,8 @@ post '/users' do
 		session[:user_id] = @user.id
 		redirect to '/mainpage'
 	else
-		redirect to '/error'
+		@flash = @user.errors.full_messages
+		erb :'users/new'
 	end
 end
 
@@ -32,7 +33,8 @@ post '/login' do
 		session[:user_id] = @user.id
 		redirect to '/mainpage'
 	else
-		redirect to '/error'
+		@flash = "Email/Password do not match!"
+		erb :'users/login'
 	end
 end
 

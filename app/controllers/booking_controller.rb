@@ -5,11 +5,12 @@ get '/user/:user_id/bookings' do
 	erb :'users/my_bookings'
 end
 
-get '/properties/:property_id/users/:user_id/bookings' do
+get '/properties/:property_id/bookings' do
 	@user = User.find(session[:user_id])
 	@property = Property.find(params[:property_id])
 	if @user.id == @property.user.id
-		redirect to '/error'
+		@flash = "You can't book your own property!"
+		erb :'properties/properties'
 	else
 		erb :'users/bookings'
 	end
@@ -27,7 +28,7 @@ patch '/bookings/:booking_id' do
 	redirect to '/mainpage'
 end
 
-post '/properties/:property_id/users/:user_id/bookings' do
+post '/properties/:property_id/bookings' do
 	@booking = Booking.new(params[:booking])
 	@booking[:user_id] = session[:user_id]
 	@booking[:property_id] = params[:property_id]
@@ -35,7 +36,8 @@ post '/properties/:property_id/users/:user_id/bookings' do
 	if @booking.save
 		redirect to '/mainpage'
 	else
-		redirect to '/error'
+		@flash = "#{@booking.errors.full_messages}"
+		erb :'users/bookings'
 	end
 end
 

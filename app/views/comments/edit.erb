@@ -17,6 +17,6 @@ Your comment is as follow:<br><br>
 	New comment: <textarea name="comments"><%= @comment.comments %></textarea><input type="submit" value="Update"><br>
 </form>
 
-<form method="get" action="/properties/<%= @comment.property.id %>">
+<a href="/properties/<%= @comment.property.id %>">
   <button>Back</button>
-</form>
+</a>

@@ -13,6 +13,6 @@ Booking details are as follows:<br><br>
 	End date: <textarea name="booking[enddate]"><%= @booking.enddate %></textarea><input type="submit" value="Update"><br>
 </form>
 
-<form method="get" action="/user/<%= @booking.user.id %>/bookings">
+<a href="/user/<%= @booking.user.id %>/bookings">
   <button>Back</button>
-</form>
+</a>

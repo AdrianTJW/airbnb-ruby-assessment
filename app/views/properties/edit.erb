@@ -9,12 +9,13 @@ Property details are as follows:<br><br>
 <h4>Edit your property below:</h4>
 <form method="post" action="/properties/<%= @property.id %>">
 	<input name="_method" type="hidden" value="patch">
-	Property name: <textarea name="property[propertyname]"><%= @property.propertyname %></textarea><input type="submit" value="Update"><br>
-	Description: <textarea name="property[description]"><%= @property.description %></textarea><input type="submit" value="Update"><br>
-	Location: <textarea name="property[location]"><%= @property.location %></textarea><input type="submit" value="Update"><br>
-	Contact email: <textarea name="property[email]"><%= @property.email %></textarea><input type="submit" value="Update"><br>
+	Property name: <textarea name="property[propertyname]"><%= @property.propertyname %></textarea><br>
+	Description: <textarea name="property[description]"><%= @property.description %></textarea><br>
+	Location: <textarea name="property[location]"><%= @property.location %></textarea><br>
+	Contact email: <textarea name="property[email]"><%= @property.email %></textarea><br>
+	<input type="submit" value="Update">
 </form>
 
-<form method="get" action="/properties/<%= @property.id %>">
+<a href="/properties/<%= @property.id %>">
   <button>Back</button>
-</form>
+</a>

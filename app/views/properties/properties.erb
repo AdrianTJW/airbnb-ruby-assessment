@@ -1,28 +1,30 @@
-<form method="get" action="/mainpage">
+<a href="/mainpage">
 	<button>Back to mainpage</button>
-</form>
+</a>
 
 <% if @property %>
 	<h1><a href="/properties/<%= @property.id %>"><%= @property.propertyname %></a></h1><br>
-	<form method="post" action="/properties/<%= @property.id %>">
-    <input name="_method" type="hidden" value="delete"/>
-    <button>Delete</button>
-  </form>
-  <form method="get" action="/properties/<%= @property.id %>/edit">
-    <button>Edit</button>
-  </form>
+  <% if session[:user_id] == @property.user.id %>
+  	<form method="post" action="/properties/<%= @property.id %>">
+      <input name="_method" type="hidden" value="delete"/>
+      <button>Delete</button>
+    </form>
+    <a href="/properties/<%= @property.id %>/edit">
+      <button>Edit</button>
+    </a>
+  <% end %>
 	<h4>Description: <%= @property.description %></h4>
 	<h4>Location: <%= @property.location %></h4>
 	<h4>Contact details: <%= @property.email %></h4>
 	<h5>Posted by: <%= @property.user.fullname %></h5>
 
-	<form method="get" action="/properties">
+	<a href="/properties">
 		<button>More Properties!</button>
-	</form>
+	</a>
 
-	<form method="get" action="/properties/<%= @property.id %>/users/<%= @property.user.id %>/bookings">
+	<a href="/properties/<%= @property.id %>/bookings">
 		<button>Book!</button>
-	</form>
+	</a>
 
 	<form method="post" action="/property/<%= @property.id %>/comments">
     <input type="text" placeholder="Write your comments" name="comment">
@@ -32,15 +34,17 @@
 	<% @property.comments.each do |a| %>
     <p><%= a.comments %></p>
     <h5>Posted by: <%= a.user.fullname %></h5>
-    <form method="post" action="/comments/<%= a.id %>">
-      <input name="_method" type="hidden" value="delete"/>
-      <button>Delete</button>
-    </form>
+    <% if session[:user_id] == a.user.id %>
+      <form method="post" action="/comments/<%= a.id %>">
+        <input name="_method" type="hidden" value="delete"/>
+        <button>Delete</button>
+      </form>
 
-    <form method="get" action="/comments/<%= a.id %>/edit">
-      <button>Edit</button>
-    </form>
-   <% end %>
+      <a href="/comments/<%= a.id %>/edit">
+        <button>Edit</button>
+      </a>
+    <% end %>
+  <% end %>
 
 <% else %>
 
@@ -48,10 +52,6 @@
     <ul>
       <li>
       	<h4><a href="/properties/<%= x.id %>" target="_blank"><%= x.propertyname %></a> at <%= x.location %></h4>
-      	<form method="post" action="/properties/<%= x.id %>">
-          <input name="_method" type="hidden" value="delete"/>
-          <button>Delete</button>
-        </form>
       </li>
     </ul>
   <% end %>

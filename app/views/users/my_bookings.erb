@@ -1,6 +1,6 @@
-<form method="get" action="/mainpage">
+<a href="/mainpage">
 	<button>Back to mainpage</button>
-</form>
+</a>
 
 <h2>My Existing Bookings</h2>
 
@@ -10,6 +10,8 @@
 			<h4>
 			Stay name: <a href="/properties/<%= a.property.id %>"><%= a.property.propertyname %></a><br>
 			Location: <%= a.property.location %><br>
+			Booker: <%= a.bookname %><br>
+			Booker's email: <%= a.bookemail %><br>
 			Start date: <%= a.startdate %><br>
 			End date: <%= a.enddate %><br>
 
@@ -18,9 +20,9 @@
 		    <button>Delete</button>
 		  </form>
 
-		  <form method="get" action="/bookings/<%= a.id %>/edit">
+		  <a href="/bookings/<%= a.id %>/edit">
 		    <button>Edit</button>
-		  </form>
+		  </a>
 
 			</h4>
 		</li>
